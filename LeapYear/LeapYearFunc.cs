@@ -4,9 +4,21 @@ namespace LeapYear
 {
     public class LeapYearFunc
     {
+        static int input;
+
         public static void Main(string[] args) {
             var lyf = new LeapYearFunc();
-            int input = Convert.ToInt32(Console.ReadLine());
+            bool isNotValidInput = true;
+            while(isNotValidInput) {
+                try {
+                    input = Convert.ToInt32(Console.ReadLine());
+                    if (input <= 1582) {throw new Exception();}
+                    isNotValidInput = false;
+                }
+                catch (Exception e) {
+                    Console.WriteLine("Invalid input, try again!");
+                }
+            }
             if (lyf.IsLeapYear(input)) {Console.WriteLine("yay");}
             else {Console.WriteLine("nay");}
         }
